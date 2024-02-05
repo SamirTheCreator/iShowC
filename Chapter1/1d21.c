@@ -20,12 +20,6 @@ int main() {
             entab(line, entabbed);
             copy(entabbed, text[cur_line]);
             cur_line++;
-
-            for (int j=0; j < length; j++) {
-                if (entabbed[j] == '\t') {
-                        printf("tab found\n");
-                }
-            }
       }
 
       for (int i=0; i<=cur_line; ++i){
