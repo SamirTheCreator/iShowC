@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-
-
 main () {
     int c, i, nwhite, nother;
     int ndigit[10];
