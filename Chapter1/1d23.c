@@ -1,31 +1,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MAXLINE  1000
-#define MAXLINES 50
+#define MAXLINE 3000
 
-int my_getline(char *line, int maxLength);
-void copy(char *from, char *to);
 void nocomment(char *str, char *nocommented);
 
 int main() {
-      char text[MAXLINES][MAXLINE];
-      char line[MAXLINE];
+      char c_code[MAXLINE];
       char nocommented[MAXLINE];
+      int i = 0;
+      char c;
 
-      int cur_line = 0;
-      int length;
-      
-
-      while ((length = my_getline(line, MAXLINE)) > 0) {
-            nocomment(line, nocommented);
-            copy(nocommented, text[cur_line]);
-            cur_line++;
+      while ((c = getchar()) != EOF) {
+        c_code[i++] = c;
       }
+      c_code[i] = '\0';
 
-      for (int i=0; i<=cur_line; ++i){
-            printf("%s\n", text[i]);
-      }
+      nocomment(c_code, nocommented);
+      puts(nocommented);
 
       return 0;
 }
@@ -48,6 +40,7 @@ void nocomment(char *str, char *nocommented) {
                 } else if (inside_line_comment) {
                         if (c == '\n') {
                                 inside_line_comment = false;
+                                i++; // this is better, because not all line comments take the whole line. Like this one :)
                         }
                         continue;
                 } else if (!inside_char &&
