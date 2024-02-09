@@ -31,5 +31,5 @@ int main(void) {
 * This function assumes user provides sensible args.
 */
 unsigned int setbits(int x, int p, int n, int y) {
-        return x | ((y & ~(~0 << n)) << (p-n+1));
+        return (x & ~((~(~0 << n)) << (p-n+1))) | ((y & ~(~0 << n)) << (p-n+1));
 }
