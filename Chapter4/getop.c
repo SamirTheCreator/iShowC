@@ -16,9 +16,17 @@ int getop(char s[])
     while ((s[0] = c = getch()) == ' ' || c == '\t')
         ;
     s[1] = '\0';
-    if (!isdigit(c) && c != '.' && c != '-')
+    if (!isdigit(c) && c != '.' && c != '-' && c != '>')
         return c; /* not a number */
     i = 0;
+    if (c == '>') {
+        while(islower(c = getch())) 
+            s[i++] = c;
+        s[i] = '\0';
+        if (c != EOF)
+            ungetch(c);
+        return '>';
+    }
     if (c == '-' || isdigit(c)) /* collect integer part */
         while (isdigit(s[++i] = c = getch()))
             ;
